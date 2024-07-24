@@ -41,7 +41,7 @@ const Steps = () => {
                   'absolute left-0 top-0 h-full w-1 bg-zinc-400 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full',
                   {
                     'bg-zinc-700': isCurrent,
-                    'bg-primary': isCompleted,
+                    'bg-[#3f3f46]': isCompleted,
                   }
                 )}
                 aria-hidden='true'

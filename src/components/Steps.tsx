@@ -24,13 +24,18 @@ const STEPS = [
 const Steps = () => {
   const pathname = usePathname()
 
+  const getCurrentStepIndex = () => {
+    return STEPS.findIndex(step => pathname.includes(step.url))
+  }
+
+  const currentStepIndex = getCurrentStepIndex()
+
   return (
     <ol className='rounded-md bg-white lg:flex lg:rounded-none lg:border-l lg:border-r lg:border-gray-200'>
       {STEPS.map((step, i) => {
-        const isCurrent = pathname.endsWith(step.url)
-        const isCompleted = STEPS.slice(i + 1).some((step) =>
-          pathname.endsWith(step.url)
-        )
+        const isCurrent = i === currentStepIndex
+        const isCompleted = i < currentStepIndex
+        
         const imgPath = `/snake-${i + 1}.png`
 
         return (
@@ -41,7 +46,7 @@ const Steps = () => {
                   'absolute left-0 top-0 h-full w-1 bg-zinc-400 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full',
                   {
                     'bg-zinc-700': isCurrent,
-                    'bg-[#3f3f46]': isCompleted,
+                    'bg-primary': isCompleted,
                   }
                 )}
                 aria-hidden='true'

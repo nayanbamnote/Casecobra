@@ -21,13 +21,10 @@ const Page = () => {
 
   const handleUploadComplete = async (res: any) => {
     setIsLoading(true)  // Set loading to true when upload is complete
-    console.log('Files: ', res)
     const imageUrl = res[0].url
     const { width, height } = await getImageDimensions(imageUrl)
-    console.log('Image dimensions:', width, height)
     const userId = crypto.randomUUID()
     const user = await createUser(width, height, imageUrl, userId);
-    console.log(user)
     setId(userId)
     setIsRedirect(true)
   }
